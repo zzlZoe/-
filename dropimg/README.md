@@ -2,6 +2,9 @@
 
 > A Vue.js project
 
+对于图片的放大，缩小，旋转，下载，移动
+的VUE案例
+
 ## Build Setup
 
 ``` bash
