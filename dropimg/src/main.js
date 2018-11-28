@@ -6,6 +6,13 @@ import router from './router'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
+import DownImg from './directive/downimg.js'
+
+Vue.directive('downimg', {
+  update: DownImg,
+  inserted: DownImg
+})
+
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)

@@ -27,9 +27,9 @@
                   向右旋转
                 </span>
                 <span>
-                    <!-- <a href="javascript:;" v-downimg="imgUrl">
+                    <a href="javascript:;" v-downimg="imgUrl">
                         下载
-                    </a> -->
+                    </a>
                 </span>
             </div>  
         </el-dialog>
