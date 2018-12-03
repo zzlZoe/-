@@ -5,7 +5,7 @@
         </div>
         <el-dialog
             :visible.sync="dialogFormVisible"
-            :close-on-click-modal="true"
+            :close-on-click-modal="false"
             width="60%"
             center>
             <span class="closeClick" @click="clearImg">x</span>
@@ -34,6 +34,9 @@
             </div>  
         </el-dialog>
         <img ref="imgSize" style="position:absolute;left:-200000px" src="../../static/img/dropimg.jpeg" alt="">
+
+
+        <button class="btnClick" @click="directiveBtn">点击去自定义指令</button>
     </div>
 </template>
 <script>
@@ -58,6 +61,9 @@ export default {
         this.height = document.documentElement.clientHeight * 0.6
     },
     methods: {
+        directiveBtn () {
+            this.$router.push('/Directive');
+        },
         dialogImg () {
             let timer = null;
             timer = setTimeout(() => {
@@ -189,7 +195,7 @@ export default {
             this.height += this.$refs.imgSize.offsetHeight * 0.1;
             this.width += this.$refs.imgSize.offsetWidth * 0.1;
             this.left = (this.$refs.imgTopBox.offsetWidth / 2) - (this.width / 2);
-            this.top = (this.$refs.imgTopBox.offsetHeight / 2) - (this.height / 2);
+            this.top = (this.$refs.imgTopBox.offsetHeight - this.height) / 2;
         },
         // 缩小
         shrinkImg () {
@@ -208,6 +214,7 @@ export default {
             if (this.width > this.$refs.imgSize.offsetWidth / 2 || this.width < this.$refs.imgSize.offsetWidth / 2) {
                 this.width = this.$refs.imgSize.offsetWidth / 2;
                 this.height = this.$refs.imgSize.offsetHeight / 2;
+                this.current = (this.current - 90) % 360;
                 this.$refs.user_image.style.transform = 'rotate('+this.current+'deg)';
             } else {
                 this.current = (this.current - 90) % 360;
@@ -221,6 +228,7 @@ export default {
             if (this.width > this.$refs.imgSize.offsetWidth / 2 || this.width < this.$refs.imgSize.offsetWidth / 2) {
                 this.width = this.$refs.imgSize.offsetWidth / 2;
                 this.height = this.$refs.imgSize.offsetHeight / 2;
+                this.current = (this.current + 90) % 360;
                 this.$refs.user_image.style.transform = 'rotate('+this.current+'deg)';
             } else {
                 this.current = (this.current + 90) % 360;
@@ -256,10 +264,17 @@ export default {
     .el-dialog__header {
         display: none;
     }
+    .el-dialog--center .el-dialog__body {
+        text-align: initial;
+        padding: 0;
+    }
     .el-dialog__body {
         height: 300px;
         position: relative;
         padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     .imgTopBox {
         width: 100%;
@@ -287,5 +302,17 @@ export default {
         position: absolute;
         top: 10px;
         right: 10px;
+        color: #fff;
+        font-size: 30px;
+        z-index: 100;
+    }
+
+
+    .btnClick {
+        width: 200px;
+        height: 20px;
+        position: absolute;
+        top: 250px;
+        left: 0;
     }
 </style>
